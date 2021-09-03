@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CBBM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="lib/jquery-3.1.1.min.js"></script>
+        <link rel="shortcut icon" href="img/icono.png">
+        <link href="lib/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <script src="js/login.js"></script>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    </head>
+    <body onload="nobackbutton();">
+        <div id="sombra" class="hide"></div>
+        <div id="loading" class="hide">
+            <div class="sombra"></div>
+            <div id="cargando">Cargando...</div>
+            <div id="loadingImg2"></div>
+            <div id="loadingImg">
+                <img src="img/cont.png" id="loadingCont">
+                <img src="img/cont.png" id="loadingCont2">
+            </div>
+            <div id="loadingImg3"></div>
+        </div>
+        <div id="fondoBody"></div>
+        <div id="logoLogin" class="hidden-xs hidden-sm"><img src="img/logo_ofimisA.png" style="width: 100%"></div>
+        <div id="loginCampos">
+            <h1 class="tituloLogin">Iniciar sesión</h1>
+            <form id="formLogin" onSubmit="return false">
+                <div style="text-align: center">
+                    <div style="display: block; margin: 20px;">
+                        <input class="inputLogin form-control" id="inputUsuario" type="text" name="user" placeholder="Username">
+                    </div>
+                    <div style="display: block; margin: 20px;">    
+                        <input class="inputLogin form-control" id="inputPass" type="password" name="pass" placeholder="***********">
+                    </div>
+                </div>
+                <button id="btnLogin" class="btn btn-block" >Login</button>
+                <div style="text-align: center;">
+                    <label style="display: inline-block; margin-right: 25px; cursor: pointer;" class="azul" onClick="window.location.href='html/registro.html'">Registrarse</label>
+                    <label id="recPass" style="display: inline-block; margin-left: 25px; cursor: pointer;" class="azul">Recuperar contraseña</label>
+                </div>
+            </form>
+        </div>
+        <!--/////////////////////////////////////////////////////////////////////////////formularioRecuperarContraseña-->
+        <div id="recContraseña" class="hide">
+            <form id="contenidoFormulario" onsubmit="return false">
+                <h3 class="tituloLogin" style="position: relative;">Recuperar contraseña <img src = "img/cerrar.png" id="cerrarRecPass"></h3>
+                <input type="hidden" name="operacion" value="recordar">
+                <div style="margin: 15px;">
+                    <label>Usuario:</label>
+                    <input type="text" name="usuarioRec" class="form-control">
+                </div>
+                <div style="margin: 15px;">
+                    <label>Correo Electrónico:</label>
+                    <input type="text" name="correoRec" class="form-control">
+                </div>
+                <button id="btnrecContr" class="btn btn-success" style="margin: 15px;">Recuperar</button>
+            </form>
+        </div>
+        <div id="verde" class="alert alert-success mensaje hide"></div>
+        <div id="rojo" class="alert alert-danger mensaje hide"></div>
+    </body>
+</html>

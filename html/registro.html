@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registro</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="../lib/jquery-3.1.1.min.js"></script>
+		<link href="../lib/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<script src="../js/registro.js"></script>
+		<link href="../css/estilos.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div id="sombra" class="hide"></div>
+		<div id="verde" class="alert alert-success mensaje hide"></div>
+        <div id="rojo" class="alert alert-danger mensaje hide"></div>
+		<div id="registro">
+			<form id="formRegistro" onSubmit="return false">
+				<input type="hidden" name="operacion" value="nuevoRegistro">
+				<div id="encabezadoRegistro"><img class="ico" src="../img/flechaIzq.png" onclick="window.location.href = '..'" style="cursor: pointer; margin-top: 10px;">Registro</div>
+				<div id="camposReg">
+					<div>
+						<label for="iglesia" class="azul campo">Nombre Iglesia:</label>
+						<input name="iglesia" required class="form-control" maxlength="50">
+					</div>
+					<div>
+						<label for="pastor" class="azul campo">Pastor:</label>
+						<input name="pastor" required class="form-control" maxlength="300">
+					</div>
+					<div>
+						<label for="pais" class="azul campo">País:</label>
+						<input type="text" name="pais" required class="form-control" maxlength="50">
+					</div>
+					<div>
+						<label for="estado" class="azul campo">Estado:</label>
+						<input type="text" name="estado" class="form-control" maxlength="50">
+					</div>
+					<div>
+						<label for="ciudad" class="azul campo">Ciudad:</label>
+						<input type="text" name="ciudad" required class="form-control" maxlength="50">
+					</div>
+					<div>
+						<label for="direccion" class="azul campo">Dirección:</label>
+						<input name="direccion" required class="form-control" maxlength="400">
+					</div>
+					<div>
+						<label for="telefono" class="azul campo">Teléfono:</label>
+						<input name="telefono" type="number" required class="form-control" maxlength="20">
+					</div>
+					<div>
+						<label for="mail" class="azul campo">Correo:</label>
+						<input name="mail" required class="form-control" maxlength="50">
+					</div>
+					<div>
+						<label for="usuario" class="azul campo">Usuario (máximo 20 caracteres):</label>
+						<input name="usuario" required class="form-control" maxlength="20">
+					</div>
+					<div>
+						<label for="pass" class="azul campo">Contraseña:</label>
+						<input id="pass" type="password" name="pass" required class="form-control" maxlength="30">
+					</div>
+					<div>
+						<label for="confirm" class="azul campo">Confirmar Contraseña:</label>
+						<input id="confirm" type="password" name="confirm" required class="form-control" maxlength="30">
+					</div>
+					<div>
+						<label for="extrajero" class="azul campo">Selecciona esta casilla si eres misionero aprobado por el CBBM fuera de México</label>
+						<input name="extranjero" type="checkbox" style=" width: 17px; height: 17px; margin-top: 15px;">
+					</div>
+					<div>
+						<label for="extrajero" class="azul campo">Clave de registro:</label>
+						<input name="clave1" type="text" maxlength="4" class="form-control claveRegistro" autocomplete="off">
+						<label>-</label>
+						<input name="clave2" type="text" maxlength="4" class="form-control claveRegistro" autocomplete="off">
+						<label>-</label>
+						<input name="clave3" type="text" maxlength="4" class="form-control claveRegistro" autocomplete="off">
+					</div>
+					<button id="btnRegistro" class="btn btn-info btn-lg btn-block">Registrarme</button>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
