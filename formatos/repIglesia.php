@@ -56,13 +56,13 @@ switch($mes){
 
 
 
-$jsondata[0] = consulta("SELECT * FROM VW_CBBM_REPO_MASTER WHERE USU_ENVIA = ".$usu." AND FECHA LIKE '%".$anio."-".$mes."%' ORDER BY EST_REC, CIU_REC");
+$jsondata[0] = consulta($con,"SELECT * FROM VW_CBBM_REPO_MASTER WHERE USU_ENVIA = ".$usu." AND FECHA LIKE '%".$anio."-".$mes."%' ORDER BY EST_REC, CIU_REC");
 
 if(!isset($jsondata[0])){
 	header("Location: ../vistas/sinDatos.html");
 	exit();
 }
-$jsondata[1] = consulta('SELECT * FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$usu);
+$jsondata[1] = consulta($con,'SELECT * FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$usu);
 
 
 $total = 0;

@@ -16,13 +16,13 @@ $usu = $_SESSION["CBBM_USER_KEY"];
 $jsondata;
 
 
-$jsondata[0] = consulta("SELECT * FROM VW_CBBM_REPO_MASTER WHERE USU_REC = ".$usu." AND FECHA LIKE '%".$anio."-".$mes."%'");
+$jsondata[0] = consulta($con,"SELECT * FROM VW_CBBM_REPO_MASTER WHERE USU_REC = ".$usu." AND FECHA LIKE '%".$anio."-".$mes."%'");
 
 if(!isset($jsondata[0])){
 	header("Location: ../vistas/sinDatos.html");
 	exit();
 }
-$jsondata[1] = consulta('SELECT * FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$usu);
+$jsondata[1] = consulta($con,'SELECT * FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$usu);
 
 
 $pdf = new FPDF();

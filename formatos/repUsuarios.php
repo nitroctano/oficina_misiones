@@ -5,7 +5,7 @@ include("../php/conexion/ejecutar.php");
 
 $usuarios;
 
-$usuarios = consulta('SELECT * FROM CBBM_USUARIOS');
+$usuarios = consulta($con,'SELECT * FROM CBBM_USUARIOS');
 
 
 require('../lib/fpdf/fpdf.php');

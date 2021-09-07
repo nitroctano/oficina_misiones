@@ -22,7 +22,7 @@ $mesLetraIni = mesLetra($mesIni);
 $mesLetraFin = mesLetra($mesFin);
 
 
-$jsondata[0] = consulta("SELECT DISTINCT USU_ENVIA FROM VW_CBBM_REPO_MASTER WHERE DATE_FORMAT(FECHA, '%Y/%m') BETWEEN '".$anioIni."/".$mesIni."' AND '".$anioFin."/".$mesFin."' ORDER BY EST_ENVIA, CIU_ENVIA");
+$jsondata[0] = consulta($con,"SELECT DISTINCT USU_ENVIA FROM VW_CBBM_REPO_MASTER WHERE DATE_FORMAT(FECHA, '%Y/%m') BETWEEN '".$anioIni."/".$mesIni."' AND '".$anioFin."/".$mesFin."' ORDER BY EST_ENVIA, CIU_ENVIA");
 
 
 
@@ -56,7 +56,7 @@ $fila = 6;
 
 foreach ($jsondata[0] as $value){
 
-	$mis = consulta('SELECT NOM_ENVIA,PAS_ENVIA,CIU_ENVIA,EST_ENVIA FROM VW_CBBM_REPO_MASTER WHERE USU_ENVIA = '.$value[0]);
+	$mis = consulta($con,'SELECT NOM_ENVIA,PAS_ENVIA,CIU_ENVIA,EST_ENVIA FROM VW_CBBM_REPO_MASTER WHERE USU_ENVIA = '.$value[0]);
 
 		
 	if(gettype($mis) == "array"){
@@ -86,7 +86,7 @@ while ($fecIni != $fecFin) {
 
 	foreach ($jsondata[0] as $value){
 
-		$mis = consulta('SELECT SUM(MONTO) FROM VW_CBBM_REPO_MASTER WHERE USU_ENVIA = '.$value[0].' AND DATE_FORMAT(FECHA, "%Y/%m") LIKE "%'.$fecIni.'%" GROUP BY USU_ENVIA');
+		$mis = consulta($con,'SELECT SUM(MONTO) FROM VW_CBBM_REPO_MASTER WHERE USU_ENVIA = '.$value[0].' AND DATE_FORMAT(FECHA, "%Y/%m") LIKE "%'.$fecIni.'%" GROUP BY USU_ENVIA');
 
 		
 		if(gettype($mis) == "array"){

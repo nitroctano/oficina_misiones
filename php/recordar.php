@@ -7,11 +7,11 @@ $jsondata;
 $user = $_POST["usuarioRec"];
 $email = $_POST["correoRec"];
 
-$jsondata = ejecuta('SELECT VALIDA_RECORD("'.$user.'","'.$email.'")');
+$jsondata = ejecuta($con,'SELECT VALIDA_RECORD("'.$user.'","'.$email.'")');
 
 if($jsondata[0] != '0'){
 
-	$usuario = consulta('SELECT PASS FROM CBBM_USUARIOS WHERE USUARIO = "'.$user.'"');
+	$usuario = consulta($con,'SELECT PASS FROM CBBM_USUARIOS WHERE USUARIO = "'.$user.'"');
 
 	require '../lib/PHPMailer/PHPMailerAutoload.php';
 	$mail = new PHPMailer;

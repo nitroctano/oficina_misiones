@@ -1,25 +1,26 @@
 <?php
 
-function ejecuta($query){
-	$result = mysql_query($query);
-	if($result == 1){
-		return $result;
-	}
-	$row = mysql_fetch_array($result);
+function ejecuta($con, $query){
+	$result = mysqli_query($con,$query);
+	
+	//if($result->num_rows == 1){
+	//	return $result;
+	//}
+	$row = mysqli_fetch_array($result);
 	return $row;
 }
 
-function consulta($query){
+function consulta($con, $query){
 	$respuesta = null;
 	$cont = 0;
-	$result = mysql_query($query);
+	$result = mysqli_query($con, $query);
 	
 	if($result == ""){
 		return null;
 		
 	}
 
-    while($row = mysql_fetch_array($result)):
+    while($row = mysqli_fetch_array($result)):
     
         $respuesta[$cont] = $row;
         $cont ++;

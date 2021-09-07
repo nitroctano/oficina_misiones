@@ -24,7 +24,7 @@ switch($_POST["operacion"]){
 
 		$clave = $clave1 . $clave2 . $clave3;
 
-		$respuesta = ejecuta('SELECT VALIDA_CLAVE("'.$clave.'")');
+		$respuesta = ejecuta($con,'SELECT VALIDA_CLAVE("'.$clave.'")');
 
 		if($respuesta[0] == 0){
 			$jsondata[0] = "CI";
@@ -37,7 +37,7 @@ switch($_POST["operacion"]){
 			$extranjero = 'N';
 		}
 		
-		$jsondata = ejecuta('SELECT NUEVO_USUARIO("'.$iglesia.'","'.$usuario.'","'.$pass.'","'.$pastor.'","'.$direccion.'", "'.$telefono.'", "'.$email.'","'.$extranjero.'","'.$clave.'","'.$pais.'","'.$estado.'","'.$ciudad.'")');
+		$jsondata = ejecuta($con,'SELECT NUEVO_USUARIO("'.$iglesia.'","'.$usuario.'","'.$pass.'","'.$pastor.'","'.$direccion.'", "'.$telefono.'", "'.$email.'","'.$extranjero.'","'.$clave.'","'.$pais.'","'.$estado.'","'.$ciudad.'")');
 
 
 		if($jsondata[0] == 1){

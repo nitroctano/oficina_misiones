@@ -14,13 +14,13 @@ switch($_POST["operacion"]){
 
 	case 'cargaInicial':
 
-		$jsondata[0] = consulta('SELECT * FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$user);
+		$jsondata[0] = consulta($con,'SELECT * FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$user);
 
-		$jsondata[1] = consulta('SELECT * FROM VW_CBBM_PROYECTOS ORDER BY IDENT_ADMIN');
+		$jsondata[1] = consulta($con,'SELECT * FROM VW_CBBM_PROYECTOS ORDER BY IDENT_ADMIN');
 
-		$jsondata[2] = consulta('SELECT * FROM CBBM_OFRENDAS_ENC WHERE ID_USUARIO = '.$user.' order by fecha desc');
+		$jsondata[2] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_ENC WHERE ID_USUARIO = '.$user.' order by fecha desc');
 
-		$jsondata[3] = consulta('SELECT * FROM VW_CBBM_OFRENDAS_DET WHERE ID_USUARIO = '.$user);
+		$jsondata[3] = consulta($con,'SELECT * FROM VW_CBBM_OFRENDAS_DET WHERE ID_USUARIO = '.$user);
 
 		break;
 
@@ -32,13 +32,13 @@ switch($_POST["operacion"]){
 
 		$tipo = $_POST["tipoProyecto"];
 
-		$jsondata = ejecuta('SELECT ADD_PLANTILLA('.$user.','.$proyecto.','.$monto.',"'.$tipo.'")');
+		$jsondata = ejecuta($con,'SELECT ADD_PLANTILLA('.$user.','.$proyecto.','.$monto.',"'.$tipo.'")');
 
 		break;
 
 	case 'cargaPlantilla':
 
-		$jsondata = consulta('SELECT * FROM VW_CBBM_PLANTILLA WHERE ID_USUARIO = '.$user);
+		$jsondata = consulta($con,'SELECT * FROM VW_CBBM_PLANTILLA WHERE ID_USUARIO = '.$user);
 
 		break;
 
@@ -46,7 +46,7 @@ switch($_POST["operacion"]){
 
 		$tipoDeposito = $_POST["tipoDeposito"];
 
-		$jsondata = ejecuta('SELECT GENERA_OFRENDA('.$user.',"'.$tipoDeposito.'");');
+		$jsondata = ejecuta($con,'SELECT GENERA_OFRENDA('.$user.',"'.$tipoDeposito.'");');
 
 		break;
 
@@ -56,7 +56,7 @@ switch($_POST["operacion"]){
 
 		$monto = $_POST["monto"];
 
-		$jsondata = ejecuta('SELECT EDIT_MONTO('.$key.','.$monto.');');
+		$jsondata = ejecuta($con,'SELECT EDIT_MONTO('.$key.','.$monto.');');
 
 		break;
 
@@ -64,7 +64,7 @@ switch($_POST["operacion"]){
 
 		$key =$_POST["key"];
 
-		$jsondata = ejecuta('SELECT ELIM_PLANTILLA('.$key.');');
+		$jsondata = ejecuta($con,'SELECT ELIM_PLANTILLA('.$key.');');
 
 		break;
 
@@ -90,13 +90,13 @@ switch($_POST["operacion"]){
 
 		$ciudad = $_POST["ciudad"];
 
-		$jsondata = ejecuta('SELECT ACTUALIZA_USUARIO("'.$iglesia.'","'.$usuario.'","'.$pass.'","'.$pastor.'","'.$direccion.'",'.$telefono.',"'.$mail.'","'.$pais.'","'.$estado.'","'.$ciudad.'");');
+		$jsondata = ejecuta($con,'SELECT ACTUALIZA_USUARIO("'.$iglesia.'","'.$usuario.'","'.$pass.'","'.$pastor.'","'.$direccion.'",'.$telefono.',"'.$mail.'","'.$pais.'","'.$estado.'","'.$ciudad.'");');
 
 		break;
 
 	case 'cargaAvance':
 
-		$result = consulta('SELECT TIPO FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$user);
+		$result = consulta($con,'SELECT TIPO FROM CBBM_USUARIOS WHERE ID_USUARIO = '.$user);
 
 		if($result[0][0] == 1){
 
@@ -104,7 +104,7 @@ switch($_POST["operacion"]){
 
 		}else{
 
-			$jsondata = consulta('SELECT SUM(MONTO) FROM CBBM_OFRENDAS_DET WHERE ID_MISIONERO = (SELECT ID_MISIONERO FROM CBBM_PROYECTOS WHERE ID_USUARIO = '.$user.')');
+			$jsondata = consulta($con,'SELECT SUM(MONTO) FROM CBBM_OFRENDAS_DET WHERE ID_MISIONERO = (SELECT ID_MISIONERO FROM CBBM_PROYECTOS WHERE ID_USUARIO = '.$user.')');
 
 		}
 

@@ -22,7 +22,7 @@ $mesLetraIni = mesLetra($mesIni);
 $mesLetraFin = mesLetra($mesFin);
 
 
-$jsondata[0] = consulta("SELECT DISTINCT USU_REC FROM VW_CBBM_REPO_MASTER WHERE DATE_FORMAT(FECHA, '%Y/%m') BETWEEN '".$anioIni."/".$mesIni."' AND '".$anioFin."/".$mesFin."' ORDER BY EST_REC, CIU_REC");
+$jsondata[0] = consulta($con,"SELECT DISTINCT USU_REC FROM VW_CBBM_REPO_MASTER WHERE DATE_FORMAT(FECHA, '%Y/%m') BETWEEN '".$anioIni."/".$mesIni."' AND '".$anioFin."/".$mesFin."' ORDER BY EST_REC, CIU_REC");
 
 
 
@@ -86,7 +86,7 @@ while ($fecIni != $fecFin) {
 
 	foreach ($jsondata[0] as $value){
 
-		$mis = consulta('SELECT SUM(MONTO) FROM VW_CBBM_REPO_MASTER WHERE USU_REC = '.$value[0].' AND DATE_FORMAT(FECHA, "%Y/%m") LIKE "%'.$fecIni.'%" GROUP BY USU_REC');
+		$mis = consulta($con,'SELECT SUM(MONTO) FROM VW_CBBM_REPO_MASTER WHERE USU_REC = '.$value[0].' AND DATE_FORMAT(FECHA, "%Y/%m") LIKE "%'.$fecIni.'%" GROUP BY USU_REC');
 
 		
 		if(gettype($mis) == "array"){
