@@ -56,7 +56,7 @@ $fila = 6;
 
 foreach ($jsondata[0] as $value){
 
-	$mis = consulta('SELECT NOM_REC,PAS_REC,CIU_REC,EST_REC FROM VW_CBBM_REPO_MASTER WHERE USU_REC = '.$value[0]);
+	$mis = consulta($con,'SELECT NOM_REC,PAS_REC,CIU_REC,EST_REC FROM VW_CBBM_REPO_MASTER WHERE USU_REC = '.$value[0]);
 
 		
 	if(gettype($mis) == "array"){
