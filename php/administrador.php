@@ -119,7 +119,7 @@ switch($_POST["operacion"]){
         for($i=0;$i<($count-1);$i++){
             $reg = $_POST["reg".$i];
 
-            list($key[$i], $tipo[$i], $monto[$i]) = split(',',$reg);
+            list($key[$i], $tipo[$i], $monto[$i]) = explode(',',$reg);
             $total = $total + $monto[$i];
 
         }
