@@ -2,12 +2,12 @@
 
 function ejecuta($con, $query){
 	$result = mysqli_query($con,$query);
-	
-	//if($result->num_rows == 1){
-	//	return $result;
-	//}
-	$row = mysqli_fetch_array($result);
-	return $row;
+	if(is_bool($result) == false)
+	{
+		$row = mysqli_fetch_array($result);
+		return $row;
+	}	
+	return $result;	
 }
 
 function consulta($con, $query){

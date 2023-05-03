@@ -9,40 +9,41 @@ $jsondata;
 
 switch($_POST["operacion"]){
 
-	case 'cargaInicial':
+    case 'cargaInicial':
 
-		$jsondata[0] = consulta($con,'SELECT ID_PROYECTO, NOMBRE, TIPO FROM CBBM_PROYECTOS ORDER BY NOMBRE');
+	$jsondata[0] = consulta($con,'SELECT ID_PROYECTO, NOMBRE, TIPO FROM CBBM_PROYECTOS ORDER BY NOMBRE');
         
-		$jsondata[1] = consulta($con,'SELECT ID_USUARIO, NOMBRE, MISIONERO,IDENT_ADMIN, PASTOR FROM CBBM_USUARIOS WHERE TIPO <> 2 ORDER BY PASTOR');
+	$jsondata[1] = consulta($con,'SELECT ID_USUARIO, NOMBRE, MISIONERO,IDENT_ADMIN, PASTOR FROM CBBM_USUARIOS WHERE TIPO <> 2 ORDER BY PASTOR');
 
-		$jsondata[2] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_ENC WHERE ESTATUS = "PE"');
+	$jsondata[2] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_ENC WHERE ESTATUS = "PE"');
 
-		$jsondata[3] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_DET WHERE ID_OFRENDA_ENC IN (SELECT ID_OFRENDA_ENC FROM CBBM_OFRENDAS_ENC WHERE ESTATUS = "PE")');
-
-        $jsondata[4] = consulta($con,'SELECT * FROM VW_CBBM_OFRENDAS_ACTUAL ORDER BY IDENT_ADMIN');
-
-        $jsondata[5] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_ENC WHERE ESTATUS != "PE" ORDER BY FECHA DESC');
-
-        $jsondata[6] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_DET WHERE ID_OFRENDA_ENC IN (SELECT ID_OFRENDA_ENC FROM CBBM_OFRENDAS_ENC WHERE ESTATUS != "PE")');
-        $jsondata[7] = consulta($con,'SELECT DISTINCT USU_REC, NOM_REC FROM VW_CBBM_REPO_MASTER ORDER BY NOM_REC');
-
-        $jsondata[8] = consulta($con,'SELECT DISTINCT USU_ENVIA, NOM_ENVIA, PAS_ENVIA FROM VW_CBBM_REPO_MASTER ORDER BY NOM_ENVIA');
-
-		break;
-		
-	case 'agregaProyecto':
-		
-		$proyecto = $_POST['nomProyecto'];
-		
-		$jsondata = ejecuta($con,'SELECT NUEVO_PROYECTO("'.$proyecto.'")');
+	$jsondata[3] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_DET WHERE ID_OFRENDA_ENC IN (SELECT ID_OFRENDA_ENC FROM CBBM_OFRENDAS_ENC WHERE ESTATUS = "PE")');
 	
-		break;
+	$jsondata[4] = consulta($con,'SELECT * FROM VW_CBBM_OFRENDAS_ACTUAL ORDER BY IDENT_ADMIN');
+	
+	$jsondata[5] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_ENC WHERE ESTATUS != "PE" ORDER BY FECHA DESC');
+	
+	$jsondata[6] = consulta($con,'SELECT * FROM CBBM_OFRENDAS_DET WHERE ID_OFRENDA_ENC IN (SELECT ID_OFRENDA_ENC FROM CBBM_OFRENDAS_ENC WHERE ESTATUS != "PE")');
+	
+	$jsondata[7] = consulta($con,'SELECT DISTINCT USU_REC, NOM_REC FROM VW_CBBM_REPO_MASTER ORDER BY NOM_REC');
+	
+	$jsondata[8] = consulta($con,'SELECT DISTINCT USU_ENVIA, NOM_ENVIA, PAS_ENVIA FROM VW_CBBM_REPO_MASTER ORDER BY NOM_ENVIA');
+	
+	break;
+		
+    case 'agregaProyecto':
+		
+	$proyecto = $_POST['nomProyecto'];
+		
+	$jsondata = ejecuta($con,'SELECT NUEVO_PROYECTO("'.$proyecto.'")');
+	
+	break;
 
     case 'estatusProyecto':
         
-		$proyecto = $_POST['idProyecto'];
+	$proyecto = $_POST['idProyecto'];
 
-		$jsondata = ejecuta($con,'SELECT CAMBIA_ESTATUS_PROYECTO('.$proyecto.')');
+	$jsondata = ejecuta($con,'SELECT CAMBIA_ESTATUS_PROYECTO('.$proyecto.')');
 
     	break;
     case 'estatusUsuario':
@@ -66,11 +67,11 @@ switch($_POST["operacion"]){
 
         if(isset($_POST["chkFecha"])){
             $fecha = $_POST["cambioFecha"];
-            $fecha = ejecuta($con,'UPDATE CBBM_OFRENDAS_ENC SET FECHA = "'.$fecha.'" WHERE ID_OFRENDA_ENC = '.$ofrenda);
+	    $fecha = ejecuta($con,'UPDATE CBBM_OFRENDAS_ENC SET FECHA = "'.$fecha.'" WHERE ID_OFRENDA_ENC = '.$ofrenda);
         }
-
+	
     	$jsondata = ejecuta($con,'SELECT ACEPTA_OFRENDA('.$ofrenda.', "'.$folio.'", "'.$comentarios.'")');
-
+	
     	break;
     	
     case 'editNomProyecto':
@@ -152,7 +153,7 @@ switch($_POST["operacion"]){
         break;
 
     case 'regresaOfrenda':
-    $folio = $_POST['folio'];
+	$folio = $_POST['folio'];
         $jsondata = ejecuta($con,'SELECT REGRESA_OFRENDA('.$folio.')');
         break;
     
